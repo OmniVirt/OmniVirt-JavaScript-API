@@ -20,6 +20,6 @@ OmniVirt.api.broadcastMessage('seek', 0.5); // jump to the middle timeline of th
 ```
 
 * Read our API full documentation at https://www.omnivirt.com/developer/
-- OmniVirt.api.receiveMessage
-- OmniVirt.api.sendMessage
-- OmniVirt.api.broadcastMessage
+  OmniVirt.api.receiveMessage
+  OmniVirt.api.sendMessage
+  OmniVirt.api.broadcastMessage
