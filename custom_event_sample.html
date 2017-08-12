@@ -1,0 +1,47 @@
+<html>
+  <body>
+		
+		<div>
+			<!-- Default Player Code Start -->
+			<script type="text/javascript" src="//upload.omnivirt.com/scripts/embed.js"></script>
+			<iframe id="ado-1276" src="about:blank" frameborder="0" width="560" height="315" webkitAllowFullScreen="1" mozallowfullscreen="1" allowFullScreen="1"></iframe>
+			<script type="text/javascript">document.getElementById("ado-1276").setAttribute("src", "//upload.omnivirt.com/content/1276?player=true&referer=" + encodeURIComponent(window.location.href))</script>
+			<!-- Default Player Code End -->
+			
+			<textarea id="output" style="width:200px;height:315px;"></textarea>
+		</div>
+		
+		<!-- Custom Event Trigger (use OmniVirt.api.sendMessage to send a JS event) -->
+		<div>
+			<script>
+				var omniVirtIframe = document.getElementById('ado-1276');
+			</script>
+			<button onclick="OmniVirt.api.sendMessage('play', null, omniVirtIframe);" style="padding:10px">Custom Play Button</button>
+			<button onclick="OmniVirt.api.sendMessage('pause', null, omniVirtIframe);" style="padding:10px">Custom Pause Button</button>
+			<button onclick="OmniVirt.api.sendMessage('seek', 0.5, omniVirtIframe);" style="padding:10px">Jump to middle of the video</button>
+		</div>
+
+		<!-- Make sure these script is placed after our embed.js -->
+		<!-- Custom Event Listener Code Start (use OmniVirt.api.receiveMessage to receive a JS callback) -->
+    <script>
+			var outputTextArea = document.getElementById('output');
+			OmniVirt.api.recieveMessage('load', function(type, data, iframe) {
+				output.value += "OmniVirt Player: Loaded\n";
+      });
+			
+      OmniVirt.api.recieveMessage('started', function(type, data, iframe) {
+				output.value += "OmniVirt Player: Started\n";
+      });
+			
+			OmniVirt.api.recieveMessage('ended', function(type, data, iframe) {
+				output.value += "OmniVirt Player: Ended\n";
+      });
+			
+			OmniVirt.api.recieveMessage('progress', function(type, data, iframe) {
+				output.value += ("OmniVirt Player: Progress " + Number((data*100).toFixed(1)) + "%\n");
+      });
+    </script>
+		<!-- Custom Event Listener Code End -->
+    
+  </body>
+</html>
